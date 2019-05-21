@@ -1,5 +1,4 @@
 // This file contains the 'main' function. Program execution begins and ends there.
-//
 
 #include "pch.h"
 #include <iostream>
@@ -13,10 +12,12 @@
 
 using namespace std;
 
+//define number of constants - TODO: just a fancy way of declaring constants?
 enum { CAR, SERV };
 enum { BRAND, MODEL, OWNER };
 enum { NAME, ADDR, PHONE };
 
+//declaring a structure 'car' and 'service' a user defined data type
 struct car
 {
 	char brand[50];
@@ -31,12 +32,14 @@ struct service
 	char phone[20];
 };
 
-
+//declaring max size for structure 'car' and 'service'
 struct car cars[MAX_SIZE];
 struct service servs[MAX_SIZE];
+//TODO: declaring these for...
 int num_cars = 0;
 int num_servs = 0;
 
+//declaring programm functions
 void select(int);
 void find_select(int);
 void srt_select(int);
@@ -56,15 +59,15 @@ int main()
 
 	char s[10];
 	int n;
-	for (;;)
+	for (;;) //endless for loop
 	{
 		cout << "Enter:" << endl;
 		cout << "1 - select for car" << endl;
 		cout << "2 - select for service" << endl;
 		cout << "3 - exit program" << endl;
 
-		cin.getline(s, 9);
-		n = atoi(s);
+		cin.getline(s, 9); //TODO: I am writing 9 instead of 10 because...
+		n = atoi(s); //transforming string to integer as switch did not read properly initial int
 		switch (n)
 		{
 		case 1:
@@ -82,11 +85,13 @@ int main()
 	return 0;
 }
 
-// select atskiras
 void select(int V)
 {
 	char buf[20];
-
+	
+	
+	//using strcpy_s(dst, sizeof dst, src) as assigning a value produced errors and didn't work
+	//TODO: change buf
 	if (V == CAR) strcpy_s(buf, 20, "cars");
 	if (V == SERV)  strcpy_s(buf, 20, "services");
 
@@ -102,8 +107,8 @@ void select(int V)
 
 	char s[10];
 	int n;
-	cin.getline(s, 9);
-	n = atoi(s);
+	cin.getline(s, 9); //TODO: I am writing 9 instead of 10 because...
+	n = atoi(s); //transforming string to integer as switch did not work properly
 
 	switch (n)
 	{
@@ -134,7 +139,6 @@ void select(int V)
 	}
 }
 
-// append ir vienadas
 void append(int V)
 {
 	//clear input stream
@@ -205,8 +209,7 @@ void append(int V)
 		num_servs++;
 	}
 }
-
-// print ir vienadas 
+ 
 void print(int V)
 {
 	int i;
@@ -225,7 +228,7 @@ void print(int V)
 	}
 }
 
-// find select ir vienadas
+
 void find_select(int V)
 {
 	char s[10];
@@ -255,7 +258,7 @@ void find_select(int V)
 	}
 }
 
-// srt select ir vienadas
+
 void srt_select(int V)
 {
 	char s[10];
@@ -285,7 +288,7 @@ void srt_select(int V)
 	}
 }
 
-// del select ir vienadas
+
 void del_select(int V)
 {
 	char s[10];
@@ -315,7 +318,7 @@ void del_select(int V)
 	}
 }
 
-// find ir vienadas
+
 void find(int V1, int V2)
 {
 	int i;
@@ -372,7 +375,7 @@ void find(int V1, int V2)
 	}
 }
 
-// del ir vienadas
+
 void del(int V1, int V2)
 {
 	int i;
@@ -428,7 +431,7 @@ void del(int V1, int V2)
 	}
 }
 
-// srt ir vienadas
+
 void srt(int V1, int V2)
 {
 	int i, j, min_j;
@@ -502,7 +505,7 @@ void srt(int V1, int V2)
 	}
 }
 
-// write_files atskiras v4.cpp faila ir visual studio compiler compatible kodu
+
 void write_file(int V)
 {
 	char fname[50];
@@ -526,7 +529,7 @@ void write_file(int V)
 	}
 }
 
-// read_file atskiras no v4.cpp faila ar visual studio compiler compatible kodu
+
 void read_file(int V)
 {
 	int i;
@@ -557,7 +560,7 @@ void read_file(int V)
 	}
 }
 
-// ir vienadas
+
 bool word_num(char* str)
 {
 	for (int i = 0; i < strlen(str); i++)
@@ -566,7 +569,7 @@ bool word_num(char* str)
 	return true;
 }
 
-// bool ir vienadas
+
 bool phone(char* str)
 {
 	for (int i = 0; i < strlen(str); i++)
