@@ -14,6 +14,7 @@ enum { CAR, SERV };
 enum { BRAND, MODEL, OWNER };
 enum { NAME, ADDR, PHONE };
 
+//declaring a structure 'car' and 'service' a user defined data type
 struct car
 {
 	char brand[50];
@@ -28,9 +29,10 @@ struct service
 	char phone[20];
 };
 
-
+//declaring max size for structure 'car' and 'service'
 struct car cars[MAX_SIZE];
 struct service servs[MAX_SIZE];
+//
 int num_cars = 0;
 int num_servs = 0;
 
