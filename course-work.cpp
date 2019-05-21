@@ -63,8 +63,8 @@ int main()
 		cout << "2 - select for service" << endl;
 		cout << "3 - exit program" << endl;
 
-		cin.getline(s, 9);
-		n = atoi(s);
+		cin.getline(s, 9);//TODO: I am writing 9 instead of 10 because...
+		n = atoi(s);//transforming string to integer as switch 
 		switch (n)
 		{
 		case 1:
@@ -89,7 +89,9 @@ void select(int V)
 	//char *buf;
 	//if (V == CAR) buf = "cars";
 	//if (V == SERV) buf = "services";
-
+	
+	//using strcopy_s because assigning a value produced errors and didn't work straight away
+	//TODO: change buf to something more meaningful
 	if (V == CAR) strcpy_s(buf, 20, "cars");
 	if (V == SERV)  strcpy_s(buf, 20, "services");
 
@@ -104,8 +106,8 @@ void select(int V)
 
 	char s[10];
 	int n;
-	cin.getline(s, 9);
-	n = atoi(s);
+	cin.getline(s, 9);//
+	n = atoi(s);//transforming string to integer as switch 
 
 	switch (n)
 	{
