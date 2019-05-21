@@ -9,7 +9,7 @@
 
 using namespace std;
 
-//define number of constants
+//define number of constants - TODO: just a fancy way of declaring contants?
 enum { CAR, SERV };
 enum { BRAND, MODEL, OWNER };
 enum { NAME, ADDR, PHONE };
@@ -32,10 +32,11 @@ struct service
 //declaring max size for structure 'car' and 'service'
 struct car cars[MAX_SIZE];
 struct service servs[MAX_SIZE];
-//
+//TODO
 int num_cars = 0;
 int num_servs = 0;
 
+//declaring programm functions
 void select(int);
 void find_select(int);
 void srt_select(int);
@@ -55,7 +56,7 @@ int main()
 	
 	char s[10];
 	int n;
-	for (;;)
+	for (;;) //endles for loop
 	{
 		cout << "Enter:" << endl;
 		cout << "1 - select for car" << endl;
