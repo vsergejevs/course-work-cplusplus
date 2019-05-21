@@ -9,7 +9,7 @@
 
 using namespace std;
 
-//define number of constants - TODO: just a fancy way of declaring contants?
+//define number of constants - TODO: just a fancy way of declaring constants?
 enum { CAR, SERV };
 enum { BRAND, MODEL, OWNER };
 enum { NAME, ADDR, PHONE };
@@ -32,7 +32,7 @@ struct service
 //declaring max size for structure 'car' and 'service'
 struct car cars[MAX_SIZE];
 struct service servs[MAX_SIZE];
-//TODO
+//TODO: declaring these for...
 int num_cars = 0;
 int num_servs = 0;
 
