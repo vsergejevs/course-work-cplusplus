@@ -1,20 +1,22 @@
+// This file contains the 'main' function. Program execution begins and ends there.
+//
 
 #include "pch.h"
 #include <iostream>
+#pragma warning(disable: 4996)
 #include <cstring>
 #include <stdio.h>
+#include <string.h>
 #include "stdio.h"
 
 #define MAX_SIZE 1000
 
 using namespace std;
 
-//define number of constants - TODO: just a fancy way of declaring constants?
 enum { CAR, SERV };
 enum { BRAND, MODEL, OWNER };
 enum { NAME, ADDR, PHONE };
 
-//declaring a structure 'car' and 'service' a user defined data type
 struct car
 {
 	char brand[50];
@@ -29,15 +31,12 @@ struct service
 	char phone[20];
 };
 
-//declaring max size for structure 'car' and 'service'
+
 struct car cars[MAX_SIZE];
 struct service servs[MAX_SIZE];
-
-//TODO: declaring these for...
 int num_cars = 0;
 int num_servs = 0;
 
-//declaring programm functions
 void select(int);
 void find_select(int);
 void srt_select(int);
@@ -54,18 +53,18 @@ bool phone(char*);
 
 int main()
 {
-	
+
 	char s[10];
 	int n;
-	for (;;) //endles for loop
+	for (;;)
 	{
 		cout << "Enter:" << endl;
 		cout << "1 - select for car" << endl;
 		cout << "2 - select for service" << endl;
 		cout << "3 - exit program" << endl;
 
-		cin.getline(s, 9);//TODO: I am writing 9 instead of 10 because...
-		n = atoi(s);//transforming string to integer as switch did not read properly initial int
+		cin.getline(s, 9);
+		n = atoi(s);
 		switch (n)
 		{
 		case 1:
@@ -87,12 +86,7 @@ int main()
 void select(int V)
 {
 	char buf[20];
-	//char *buf;
-	//if (V == CAR) buf = "cars";
-	//if (V == SERV) buf = "services";
-	
-	//using strcpy_s(dst, sizeof dst, src) as assigning a value produced errors and didn't work
-	//TODO: change buf to something more meaningful
+
 	if (V == CAR) strcpy_s(buf, 20, "cars");
 	if (V == SERV)  strcpy_s(buf, 20, "services");
 
@@ -104,11 +98,12 @@ void select(int V)
 	cout << "5 - del " << buf << endl;
 	cout << "6 - save to file " << buf << endl;
 	cout << "7 - load from file " << buf << endl;
+	cout << "8 - open main menu " << buf << endl;
 
 	char s[10];
 	int n;
-	cin.getline(s, 9);//TODO: I am writing 9 instead of 10 because...
-	n = atoi(s);//transforming string to integer as switch 
+	cin.getline(s, 9);
+	n = atoi(s);
 
 	switch (n)
 	{
@@ -133,26 +128,28 @@ void select(int V)
 	case 7:
 		read_file(V);
 		break;
+	case 8:
+		main();
+		break;
 	}
 }
 
 // append ir vienadas
 void append(int V)
 {
-	cin.clear(); // new code
+	//clear input stream
+	cin.clear();
 	fflush(stdin);
 
 	if (V == CAR)
 	{
 		cout << "Enter brand: ";
-		cin.getline(cars[num_cars].brand, 50); //new code
-		// TO DO accepts string max 50 symbols 
-		//check getline built in function 
+		cin.getline(cars[num_cars].brand, 50);
 
 		while (!word_num(cars[num_cars].brand))
 		{
 			cout << "Wrong! Repeat: ";
-			cin.getline(cars[num_cars].brand, 50); //new code
+			cin.getline(cars[num_cars].brand, 50);
 		}
 
 		cout << "Enter model: ";
@@ -161,7 +158,7 @@ void append(int V)
 		while (!word_num(cars[num_cars].model))
 		{
 			cout << "Wrong! Repeat: ";
-			cin.getline(cars[num_cars].model, 50); //new code
+			cin.getline(cars[num_cars].model, 50);
 		}
 
 		cout << "Enter owner: ";
@@ -170,7 +167,7 @@ void append(int V)
 		while (!word_num(cars[num_cars].owner))
 		{
 			cout << "Wrong! Repeat: ";
-			cin.getline(cars[num_cars].owner, 50); //new code
+			cin.getline(cars[num_cars].owner, 50);
 		}
 
 		num_cars++;
@@ -184,7 +181,7 @@ void append(int V)
 		while (!word_num(servs[num_servs].name))
 		{
 			cout << "Wrong! Repeat: ";
-			cin.getline(servs[num_servs].name, 50); //new code
+			cin.getline(servs[num_servs].name, 50);
 		}
 
 		cout << "Enter address: ";
@@ -193,7 +190,7 @@ void append(int V)
 		while (!word_num(servs[num_servs].address))
 		{
 			cout << "Wrong! Repeat: ";
-			cin.getline(servs[num_servs].address, 50); //new code
+			cin.getline(servs[num_servs].address, 50);
 		}
 
 		cout << "Enter phone: ";
@@ -202,7 +199,7 @@ void append(int V)
 		while (!phone(servs[num_servs].phone))
 		{
 			cout << "Wrong! Repeat: ";
-			cin.getline(servs[num_servs].phone, 50); //new code
+			cin.getline(servs[num_servs].phone, 50);
 		}
 
 		num_servs++;
@@ -324,7 +321,6 @@ void find(int V1, int V2)
 	int i;
 	char buf[100];
 	int count = 0;
-
 	cin.clear(); // new code
 	fflush(stdin);
 	// TO DO - check cin and fflush built in function functions 
@@ -514,9 +510,8 @@ void write_file(int V)
 	if (V == SERV)
 	{
 		cout << "Enter file name: ";
-		cin >> fname;
-		FILE * hfile;
-		fopen_s(&hfile,fname,"w");
+		cin.getline(fname, 50);
+		FILE * hfile = fopen(fname, "w");
 		fwrite(&servs[0], sizeof(struct service), num_servs, hfile);
 		fclose(hfile);
 	}
@@ -524,9 +519,8 @@ void write_file(int V)
 	if (V == CAR)
 	{
 		cout << "Enter file name: ";
-		cin >> fname;
-		FILE * hfile;
-		fopen_s(&hfile,fname,"w");
+		cin.getline(fname, 50);
+		FILE * hfile = fopen(fname, "w");
 		fwrite(&cars[0], sizeof(struct car), num_cars, hfile);
 		fclose(hfile);
 	}
@@ -542,9 +536,8 @@ void read_file(int V)
 	{
 		i = 0;
 		cout << "Enter file name: ";
-		cin >> fname;
-		FILE * hfile;
-		fopen_s(&hfile,fname,"w");
+		cin.getline(fname, 50);
+		FILE * hfile = fopen(fname, "r");
 		while (fread(&servs[i], sizeof(struct service), 1, hfile))
 			i++;
 		num_servs = i;
@@ -555,9 +548,8 @@ void read_file(int V)
 	{
 		i = 0;
 		cout << "Enter file name: ";
-		cin >> fname;
-		FILE * hfile;
-		fopen_s(&hfile,fname,"w");
+		cin.getline(fname, 50);
+		FILE * hfile = fopen(fname, "r");
 		while (fread(&cars[i], sizeof(struct car), 1, hfile))
 			i++;
 		num_cars = i;
