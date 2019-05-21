@@ -9,6 +9,7 @@
 
 using namespace std;
 
+//define number of constants
 enum { CAR, SERV };
 enum { BRAND, MODEL, OWNER };
 enum { NAME, ADDR, PHONE };
