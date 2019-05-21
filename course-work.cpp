@@ -32,6 +32,7 @@ struct service
 //declaring max size for structure 'car' and 'service'
 struct car cars[MAX_SIZE];
 struct service servs[MAX_SIZE];
+
 //TODO: declaring these for...
 int num_cars = 0;
 int num_servs = 0;
@@ -64,7 +65,7 @@ int main()
 		cout << "3 - exit program" << endl;
 
 		cin.getline(s, 9);//TODO: I am writing 9 instead of 10 because...
-		n = atoi(s);//transforming string to integer as switch 
+		n = atoi(s);//transforming string to integer as switch did not read properly initial int
 		switch (n)
 		{
 		case 1:
@@ -90,7 +91,7 @@ void select(int V)
 	//if (V == CAR) buf = "cars";
 	//if (V == SERV) buf = "services";
 	
-	//using strcopy_s because assigning a value produced errors and didn't work straight away
+	//using strcpy_s(dst, sizeof dst, src) as assigning a value produced errors and didn't work
 	//TODO: change buf to something more meaningful
 	if (V == CAR) strcpy_s(buf, 20, "cars");
 	if (V == SERV)  strcpy_s(buf, 20, "services");
@@ -106,7 +107,7 @@ void select(int V)
 
 	char s[10];
 	int n;
-	cin.getline(s, 9);//
+	cin.getline(s, 9);//TODO: I am writing 9 instead of 10 because...
 	n = atoi(s);//transforming string to integer as switch 
 
 	switch (n)
