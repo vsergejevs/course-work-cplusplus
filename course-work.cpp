@@ -148,7 +148,7 @@ void append(int V)
 	if (V == CAR)
 	{
 		cout << "Enter brand: ";
-		cin.getline(cars[num_cars].brand, 50);
+		cin.getline(cars[num_cars].brand, 50); //save new brand entries to structure cars
 
 		while (!word_num(cars[num_cars].brand))
 		{
@@ -157,7 +157,7 @@ void append(int V)
 		}
 
 		cout << "Enter model: ";
-		cin.getline(cars[num_cars].model, 50);
+		cin.getline(cars[num_cars].model, 50); //save new model entries to structure cars
 
 		while (!word_num(cars[num_cars].model))
 		{
@@ -166,7 +166,7 @@ void append(int V)
 		}
 
 		cout << "Enter owner: ";
-		cin.getline(cars[num_cars].owner, 50);
+		cin.getline(cars[num_cars].owner, 50); //save new owner entries to structure cars
 
 		while (!word_num(cars[num_cars].owner))
 		{
@@ -561,7 +561,7 @@ void read_file(int V)
 }
 
 
-bool word_num(char* str)
+bool word_num(char* str) //compares each string character so it contains letters, numbers or spaces
 {
 	for (int i = 0; i < strlen(str); i++)
 		if (!((str[i] >= '0' && str[i] <= '9') || (str[i] >= 'A' && str[i] <= 'z') || str[i] == ' '))
@@ -570,7 +570,7 @@ bool word_num(char* str)
 }
 
 
-bool phone(char* str)
+bool phone(char* str) //compares each string character so it contains numbers, minus or a plus sign
 {
 	for (int i = 0; i < strlen(str); i++)
 		if (!((str[i] >= '0' && str[i] <= '9') || str[i] == '-' || str[i] == '+'))
