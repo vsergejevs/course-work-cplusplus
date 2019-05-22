@@ -6,7 +6,6 @@
 #include <cstring>
 #include <stdio.h>
 #include <string.h>
-#include "stdio.h"
 
 #define MAX_SIZE 1000
 
