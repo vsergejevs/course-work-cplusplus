@@ -150,7 +150,7 @@ void append(int V)
 		cout << "Enter brand: ";
 		cin.getline(cars[num_cars].brand, 50); //save new brand entries to structure cars
 
-		while (!word_num(cars[num_cars].brand)) //tell user that he has entered forbidden characters
+		while (!word_num(cars[num_cars].brand)) //check if user has entered forbidden characters
 		{
 			cout << "Forbidden character entered, please try again: ";
 			cin.getline(cars[num_cars].brand, 50);
@@ -180,9 +180,9 @@ void append(int V)
 	if (V == SERV)
 	{
 		cout << "Enter name: ";
-		cin.getline(servs[num_servs].name, 50);
+		cin.getline(servs[num_servs].name, 50); //save new service entries to structure servs
 
-		while (!word_num(servs[num_servs].name))
+		while (!word_num(servs[num_servs].name)) //check if user has entered forbidden characters
 		{
 			cout << "Forbidden character entered, please try again: ";
 			cin.getline(servs[num_servs].name, 50);
@@ -217,18 +217,18 @@ void print(int V)
 	{
 		cout << "brand\t" << "model\t" << "owner" << endl;
 		for (i = 0; i < num_cars; i++)
-			cout << cars[i].brand << "\t" << cars[i].model << "\t" << cars[i].owner << endl;
+			cout << cars[i].brand << "\t" << cars[i].model << "\t" << cars[i].owner << endl; //print to screen car entries
 	}
 
 	if (V == SERV)
 	{
 		cout << "name\t" << "address\t" << "phone" << endl;
 		for (i = 0; i < num_servs; i++)
-			cout << servs[i].name << "\t" << servs[i].address << "\t" << servs[i].phone << endl;
+			cout << servs[i].name << "\t" << servs[i].address << "\t" << servs[i].phone << endl; //print to screen service entries
 	}
 }
 
-
+//checks how to find cars or services and calls the appropriate function
 void find_select(int V)
 {
 	char s[10];
@@ -258,7 +258,7 @@ void find_select(int V)
 	}
 }
 
-
+//checks how to sort cars or services and calls the appropriate function
 void srt_select(int V)
 {
 	char s[10];
@@ -288,7 +288,7 @@ void srt_select(int V)
 	}
 }
 
-
+//checks how to delete cars or services and calls the appropriate function
 void del_select(int V)
 {
 	char s[10];
@@ -324,10 +324,9 @@ void find(int V1, int V2)
 	int i;
 	char buf[100];
 	int count = 0;
-	cin.clear(); // new code
+	cin.clear();  // clears data stream
 	fflush(stdin);
-	// TO DO - check cin and fflush built in function functions 
-	// data stream - check wiki
+	
 
 	if (V1 == SERV && V2 == NAME)
 	{
