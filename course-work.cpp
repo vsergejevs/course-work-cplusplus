@@ -31,7 +31,8 @@ struct service
 	char phone[20];
 };
 
-//declaring max size for structure 'car' and 'service'
+//declaring structure variables
+//setting amount for structure 'car' and 'service' members
 struct car cars[MAX_SIZE];
 struct service servs[MAX_SIZE];
 //TODO: declaring these for...
@@ -137,7 +138,7 @@ void select(int V)
 		break;
 	}
 }
-
+//add new entries to structure
 void append(int V)
 {
 	//clear input stream
