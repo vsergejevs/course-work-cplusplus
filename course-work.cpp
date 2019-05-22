@@ -150,9 +150,9 @@ void append(int V)
 		cout << "Enter brand: ";
 		cin.getline(cars[num_cars].brand, 50); //save new brand entries to structure cars
 
-		while (!word_num(cars[num_cars].brand))
+		while (!word_num(cars[num_cars].brand)) //tell user that he has entered forbidden characters
 		{
-			cout << "Wrong! Repeat: ";
+			cout << "Forbidden character entered, please try again: ";
 			cin.getline(cars[num_cars].brand, 50);
 		}
 
@@ -161,7 +161,7 @@ void append(int V)
 
 		while (!word_num(cars[num_cars].model))
 		{
-			cout << "Wrong! Repeat: ";
+			cout << "Forbidden character entered, please try again: ";
 			cin.getline(cars[num_cars].model, 50);
 		}
 
@@ -170,7 +170,7 @@ void append(int V)
 
 		while (!word_num(cars[num_cars].owner))
 		{
-			cout << "Wrong! Repeat: ";
+			cout << "Forbidden character entered, please try again: ";
 			cin.getline(cars[num_cars].owner, 50);
 		}
 
@@ -184,7 +184,7 @@ void append(int V)
 
 		while (!word_num(servs[num_servs].name))
 		{
-			cout << "Wrong! Repeat: ";
+			cout << "Forbidden character entered, please try again: ";
 			cin.getline(servs[num_servs].name, 50);
 		}
 
@@ -193,7 +193,7 @@ void append(int V)
 
 		while (!word_num(servs[num_servs].address))
 		{
-			cout << "Wrong! Repeat: ";
+			cout << "Forbidden character entered, please try again: ";
 			cin.getline(servs[num_servs].address, 50);
 		}
 
@@ -202,7 +202,7 @@ void append(int V)
 
 		while (!phone(servs[num_servs].phone))
 		{
-			cout << "Wrong! Repeat: ";
+			cout << "Forbidden character entered, please try again: ";
 			cin.getline(servs[num_servs].phone, 50);
 		}
 
