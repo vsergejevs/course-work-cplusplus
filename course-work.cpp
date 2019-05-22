@@ -335,7 +335,7 @@ void find(int V1, int V2)
 		cout << "Name:\t" << "\t" << "Address:\t" << "Phone:" << endl;
 
 		for (i = 0; i < num_servs; i++)
-			if (!strcmp(servs[i].name, buf))
+			if (!strcmp(servs[i].name, buf)) //TODO: does this says "if not false then execute cout servs[i].name ?"
 			{
 				cout << servs[i].name << "\t" << servs[i].address << "\t" << "\t" << servs[i].phone << endl;
 				count++;
