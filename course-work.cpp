@@ -61,10 +61,11 @@ int main()
 	int n;
 	for (;;) //endless for loop
 	{
-		cout << "Enter:" << endl;
-		cout << "1 - select for car" << endl;
-		cout << "2 - select for service" << endl;
-		cout << "3 - exit program" << endl;
+		cout << "Greetings human!" << endl;
+		cout << "Please choose one of the following options to proceed:" << endl;
+		cout << "1 - choose to work with cars" << endl;
+		cout << "2 - choose to work with services" << endl;
+		cout << "3 - exit application" << endl;
 
 		cin.getline(s, 9); //TODO: I am writing 9 instead of 10 because...
 		n = atoi(s); //transforming string to integer as switch did not read properly initial int
