@@ -35,7 +35,7 @@ struct service
 //setting amount for structure 'car' and 'service' members
 struct car cars[MAX_SIZE];
 struct service servs[MAX_SIZE];
-//TODO: declaring these for...
+//TODO: declaring these for...having counters?
 int num_cars = 0;
 int num_servs = 0;
 
@@ -61,6 +61,10 @@ int main()
 	int n;
 	for (;;) //endless for loop
 	{
+		cout << "Enter:" << endl;
+		cout << "1 - select for car" << endl;
+		cout << "2 - select for service" << endl;
+		cout << "3 - exit program" << endl;
 		cout << "Greetings human!" << endl;
 		cout << "Please choose one of the following options to proceed:" << endl;
 		cout << "1 - choose to work with cars" << endl;
@@ -91,7 +95,7 @@ void select(int V)
 	char buf[20];
 	
 	
-	//using strcpy_s(dst, sizeof dst, src) as assigning a value produced errors and didn't work
+	//using strcpy_s(dst, sizeof dst, src) because assigning a value produced errors and didn't work
 	//TODO: change buf
 	if (V == CAR) strcpy_s(buf, 20, "cars");
 	if (V == SERV)  strcpy_s(buf, 20, "services");
@@ -441,21 +445,21 @@ void srt(int V1, int V2)
 
 	if (V1 == SERV && V2 == NAME)
 	{
-		for (i = 0; i < num_servs; i++)
+		for (i = 0; i < num_servs; i++) //looping through the num_servs counter
 		{
-			min_j = i;
-			smin = servs[i];
+			min_j = i; //TODO: what is happening here
+			smin = servs[i]; //TODO: what is happening here
 
-			for (j = i + 1; j < num_servs; j++)
-				if (strcmp(servs[j].name, smin.name) < 0)
+			for (j = i + 1; j < num_servs; j++) //TODO: what is happening here
+				if (strcmp(servs[j].name, smin.name) < 0) //TODO: what is happening here
 				{
-					smin = servs[j];
-					min_j = j;
+					smin = servs[j]; //TODO: what is happening here
+					min_j = j; //TODO: what is happening here
 				}
 
-			stmp = servs[i];
-			servs[i] = smin;
-			servs[min_j] = stmp;
+			stmp = servs[i]; //TODO: what is happening here
+			servs[i] = smin; //TODO: what is happening here
+			servs[min_j] = stmp; //TODO: what is happening here
 		}
 		print(SERV);
 	}
@@ -513,11 +517,11 @@ void write_file(int V)
 
 	if (V == SERV)
 	{
-		cout << "Enter file name: ";
+		cout << "Enter file name: "; 
 		cin.getline(fname, 50);
-		FILE * hfile = fopen(fname, "w");
-		fwrite(&servs[0], sizeof(struct service), num_servs, hfile);
-		fclose(hfile);
+		FILE * hfile = fopen(fname, "w"); //Open the file, create new if necessary
+		fwrite(&servs[0], sizeof(struct service), num_servs, hfile); //TODO: What happens here
+		fclose(hfile); //Closing the opened/created file
 	}
 
 	if (V == CAR)
