@@ -1,13 +1,13 @@
 // This file contains the 'main' function. Program execution begins and ends there.
 
-#include "pch.h"
+//#include "pch.h"
 #include <iostream>
 #pragma warning(disable: 4996)
 #include <cstring>
 #include <stdio.h>
 #include <string.h>
 
-#define MAX_SIZE 1000
+//#define MAX_SIZE 1000
 
 using namespace std;
 
@@ -33,11 +33,12 @@ struct service
 
 //declaring structure variables
 //setting amount for structure 'car' and 'service' members
-struct car cars[MAX_SIZE];
-struct service servs[MAX_SIZE];
+struct car cars[1];
+struct service servs[1];
 //TODO: declaring these for...having counters?
 int num_cars = 0;
 int num_servs = 0;
+
 
 //declaring programm functions
 void select(int);
@@ -61,15 +62,12 @@ int main()
 	int n;
 	for (;;) //endless for loop
 	{
-		cout << "Enter:" << endl;
-		cout << "1 - select for car" << endl;
-		cout << "2 - select for service" << endl;
-		cout << "3 - exit program" << endl;
 		cout << "Greetings human!" << endl;
 		cout << "Please choose one of the following options to proceed:" << endl;
-		cout << "1 - choose to work with cars" << endl;
-		cout << "2 - choose to work with services" << endl;
-		cout << "3 - exit application" << endl;
+		cout << "1 - Choose to work with cars" << endl;
+		cout << "2 - Choose to work with services" << endl;
+		cout << "3 - Exit application" << "\n" <<endl;
+		
 
 		cin.getline(s, 9); //TODO: I am writing 9 instead of 10 because...
 		n = atoi(s); //transforming string to integer as switch did not read properly initial int
@@ -93,22 +91,22 @@ int main()
 void select(int V)
 {
 	char buf[20];
-	
-	
+
+
 	//using strcpy_s(dst, sizeof dst, src) because assigning a value produced errors and didn't work
 	//TODO: change buf
 	if (V == CAR) strcpy_s(buf, 20, "cars");
 	if (V == SERV)  strcpy_s(buf, 20, "services");
 
 
-	cout << "1 - add " << buf << endl;
-	cout << "2 - show " << buf << endl;
-	cout << "3 - find " << buf << endl;
-	cout << "4 - srt " << buf << endl;
-	cout << "5 - del " << buf << endl;
-	cout << "6 - save to file " << buf << endl;
-	cout << "7 - load from file " << buf << endl;
-	cout << "8 - open main menu " << buf << endl;
+	cout << "1 - Add " << buf << endl;
+	cout << "2 - Show " << buf << endl;
+	cout << "3 - Find " << buf << endl;
+	cout << "4 - Sort " << buf << endl;
+	cout << "5 - Delete " << buf << endl;
+	cout << "6 - Save to file " << buf << endl;
+	cout << "7 - Load from file " << buf << endl;
+	cout << "8 - Open main menu " << buf << "\n" << endl;
 
 	char s[10];
 	int n;
@@ -213,8 +211,9 @@ void append(int V)
 
 		num_servs++;
 	}
+	cout << "\n";
 }
- 
+
 void print(int V)
 {
 	int i;
@@ -331,7 +330,7 @@ void find(int V1, int V2)
 	int count = 0;
 	cin.clear();  // clears data stream
 	fflush(stdin);
-	
+
 
 	if (V1 == SERV && V2 == NAME)
 	{
@@ -397,7 +396,7 @@ void del(int V1, int V2)
 		for (i = 0; i < num_servs; i++)
 			if (!strcmp(servs[i].name, buf))
 			{
-				memcpy(&servs[i], &servs[i + 1], (num_servs - i - 1) * sizeof(struct service)); 
+				memcpy(&servs[i], &servs[i + 1], (num_servs - i - 1) * sizeof(struct service));
 				//TODO: onto the first one I am copying the second one and the third operation is... 
 				num_servs--;
 				count++;
@@ -517,9 +516,9 @@ void write_file(int V)
 
 	if (V == SERV)
 	{
-		cout << "Enter file name: "; 
+		cout << "Enter file name: ";
 		cin.getline(fname, 50);
-		FILE * hfile = fopen(fname, "w"); //Open the file, create new if necessary
+		FILE* hfile = fopen(fname, "w"); //Open the file, create new if necessary
 		fwrite(&servs[0], sizeof(struct service), num_servs, hfile); //TODO: What happens here
 		fclose(hfile); //Closing the opened/created file
 	}
@@ -528,7 +527,7 @@ void write_file(int V)
 	{
 		cout << "Enter file name: ";
 		cin.getline(fname, 50);
-		FILE * hfile = fopen(fname, "w");
+		FILE* hfile = fopen(fname, "w");
 		fwrite(&cars[0], sizeof(struct car), num_cars, hfile);
 		fclose(hfile);
 	}
@@ -545,7 +544,7 @@ void read_file(int V)
 		i = 0;
 		cout << "Enter file name: ";
 		cin.getline(fname, 50);
-		FILE * hfile = fopen(fname, "r");
+		FILE* hfile = fopen(fname, "r");
 		while (fread(&servs[i], sizeof(struct service), 1, hfile))
 			i++;
 		num_servs = i;
@@ -557,7 +556,7 @@ void read_file(int V)
 		i = 0;
 		cout << "Enter file name: ";
 		cin.getline(fname, 50);
-		FILE * hfile = fopen(fname, "r");
+		FILE* hfile = fopen(fname, "r");
 		while (fread(&cars[i], sizeof(struct car), 1, hfile))
 			i++;
 		num_cars = i;
