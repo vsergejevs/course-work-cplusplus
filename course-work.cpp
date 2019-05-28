@@ -1,5 +1,6 @@
 /// This file contains the 'main' function. Program execution begins and ends there.
 
+//including directives
 #include "pch.h"
 #include <iostream>
 #pragma warning(disable: 4996)
