@@ -1,22 +1,18 @@
-// This file contains the 'main' function. Program execution begins and ends there.
-
-//#include "pch.h"
 #include <iostream>
 #pragma warning(disable: 4996)
 #include <cstring>
 #include <stdio.h>
 #include <string.h>
 
-//#define MAX_SIZE 1000
+#define MAX_SIZE 1000
 
 using namespace std;
 
-//define number of constants - TODO: just a fancy way of declaring constants?
 enum { CAR, SERV };
 enum { BRAND, MODEL, OWNER };
 enum { NAME, ADDR, PHONE };
 
-//declaring a structure 'car' and 'service' a user defined data type
+//declaring a structure 'car' and 'service'
 struct car
 {
 	char brand[50];
@@ -33,12 +29,11 @@ struct service
 
 //declaring structure variables
 //setting amount for structure 'car' and 'service' members
-struct car cars[1];
-struct service servs[1];
-//TODO: declaring these for...having counters?
+struct car cars[MAX_SIZE];
+struct service servs[MAX_SIZE];
+//declaring these for indexing 'cars' and 'services'
 int num_cars = 0;
 int num_servs = 0;
-
 
 //declaring programm functions
 void select(int);
@@ -69,7 +64,7 @@ int main()
 		cout << "3 - Exit application" << "\n" <<endl;
 		
 
-		cin.getline(s, 9); //TODO: I am writing 9 instead of 10 because...
+		cin.getline(s, 9); //writing 9 instead of 10 because of null character 
 		n = atoi(s); //transforming string to integer as switch did not read properly initial int
 		switch (n)
 		{
@@ -93,8 +88,7 @@ void select(int V)
 	char buf[20];
 
 
-	//using strcpy_s(dst, sizeof dst, src) because assigning a value produced errors and didn't work
-	//TODO: change buf
+	//using strcpy_s() because assigning a value produced didn't work
 	if (V == CAR) strcpy_s(buf, 20, "cars");
 	if (V == SERV)  strcpy_s(buf, 20, "services");
 
@@ -110,8 +104,8 @@ void select(int V)
 
 	char s[10];
 	int n;
-	cin.getline(s, 9); //TODO: I am writing 9 instead of 10 because...
-	n = atoi(s); //transforming string to integer as switch did not work properly
+	cin.getline(s, 9); 
+	n = atoi(s); //transforming string to integer
 
 	switch (n)
 	{
@@ -339,7 +333,7 @@ void find(int V1, int V2)
 		cout << "Name:\t" << "\t" << "Address:\t" << "Phone:" << endl;
 
 		for (i = 0; i < num_servs; i++)
-			if (!strcmp(servs[i].name, buf)) //TODO: does this says "if not false (if is true) then execute cout servs[i].name ?"
+			if (!strcmp(servs[i].name, buf)) //if true then execute cout
 			{
 				cout << servs[i].name << "\t" << servs[i].address << "\t" << "\t" << servs[i].phone << endl;
 				count++;
@@ -397,7 +391,7 @@ void del(int V1, int V2)
 			if (!strcmp(servs[i].name, buf))
 			{
 				memcpy(&servs[i], &servs[i + 1], (num_servs - i - 1) * sizeof(struct service));
-				//TODO: onto the first one I am copying the second one and the third operation is... 
+				//onto the first one I am copying over the second one and the third operation is size 
 				num_servs--;
 				count++;
 			}
@@ -446,19 +440,19 @@ void srt(int V1, int V2)
 	{
 		for (i = 0; i < num_servs; i++) //looping through the num_servs counter
 		{
-			min_j = i; //TODO: what is happening here
-			smin = servs[i]; //TODO: what is happening here
+			min_j = i; //assigning i value
+			smin = servs[i]; //assigning struct servs[i] to smin
 
-			for (j = i + 1; j < num_servs; j++) //TODO: what is happening here
-				if (strcmp(servs[j].name, smin.name) < 0) //TODO: what is happening here
+			for (j = i + 1; j < num_servs; j++) //looping through servs>num starting with second item for comparison
+				if (strcmp(servs[j].name, smin.name) < 0) //comparing first and second servs name length
 				{
-					smin = servs[j]; //TODO: what is happening here
-					min_j = j; //TODO: what is happening here
+					smin = servs[j]; //assign servs[j] struct to smin
+					min_j = j; //assign j index value to min_j
 				}
 
-			stmp = servs[i]; //TODO: what is happening here
-			servs[i] = smin; //TODO: what is happening here
-			servs[min_j] = stmp; //TODO: what is happening here
+			stmp = servs[i]; //assign stmp structure to servs[i] 
+			servs[i] = smin; //assign servs[i] structure to smin
+			servs[min_j] = stmp; //assign servs[min_j] structure to stmp
 		}
 		print(SERV);
 	}
@@ -519,7 +513,7 @@ void write_file(int V)
 		cout << "Enter file name: ";
 		cin.getline(fname, 50);
 		FILE* hfile = fopen(fname, "w"); //Open the file, create new if necessary
-		fwrite(&servs[0], sizeof(struct service), num_servs, hfile); //TODO: What happens here
+		fwrite(&servs[0], sizeof(struct service), num_servs, hfile); 
 		fclose(hfile); //Closing the opened/created file
 	}
 
